@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="br.com.acme.business.*"%>
+<%@page import="br.com.consultemed.service.*"%>
+<%@page import="br.com.consultemed.controller.*"%>
+<%@page import="br.com.consultemed.filter.*"%>
 <%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
-<%@page import="br.com.acme.model.*" %>
-<%@page import="br.com.acme.dao.*" %>
+<%@page import="br.com.consultemed.model.*" %>
+<%@page import="br.com.consultemed.dao.*" %>
 
 <%@ taglib prefix="mt" tagdir="/WEB-INF/tags"%>
 
@@ -52,7 +54,7 @@
                 
                 <div class="form-group">
                   <label for="telefone">Telefone</label>
-                  <input type="telefone" name="telefone" class="form-control" value="${contato.telefone}" id="telefone" placeholder="Informe o email">
+                  <input type="telefone" name="telefone" class="form-control" value="${contato.telefones}" id="telefone" placeholder="Informe o email">
                 </div>
                 
               </div>

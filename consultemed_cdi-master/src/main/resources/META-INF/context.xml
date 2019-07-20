@@ -1,4 +1,4 @@
-<Context antiJARLocking="true" path="/tomcat-test">
+<Context antiJARLocking="true" path="C:\Program Files\Apache Software Foundation\Tomcat 9.0">
   <Resource
     name="BeanManager"
     auth="Container"
