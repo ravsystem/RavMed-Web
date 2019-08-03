@@ -58,7 +58,7 @@ public class UsuarioController{
 	
 	public String novoUsuario() {
 		this.usuario = new Usuario();
-		return "/pages/usuarios/addUsuarios.xhtml.xhtml?faces-redirect=true";
+		return "/pages/usuarios/addUsuarios.xhtml?faces-redirect=true";
 	}
 	
 	public String addUsuario() {
