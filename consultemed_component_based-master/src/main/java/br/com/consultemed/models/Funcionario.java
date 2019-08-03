@@ -16,13 +16,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NamedQueries({ @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p")})
+@NamedQueries({ @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")})
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "TB_PACIENTE")
-public class Paciente implements Serializable {
-private static final long serialVersionUID = 1L;
+@Table(name = "TB_FUNCIONARIO")
+public class Funcionario implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Getter
 	@Setter
@@ -37,13 +37,13 @@ private static final long serialVersionUID = 1L;
 	
 	@Getter
 	@Setter
-	@Column(name = "ENDERECO")
-	private String endereco;
+	@Column(name = "CPF")
+	private String CPF;
 	
 	@Getter
 	@Setter
-	@Column(name = "CPF")
-	private String CPF;
+	@Column(name = "PROFISSAO")
+	private String profissao;
 	
 	@Getter
 	@Setter

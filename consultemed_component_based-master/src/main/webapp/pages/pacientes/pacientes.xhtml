@@ -24,6 +24,7 @@
 			<p:messages showDetail="false" showSummary="true" globalOnly="true" />
 			<p:dataTable id="table-paciente" var="paciente"
 				value="#{pacienteController.listaPaciente()}">
+				
 				<p:column headerText="Nome">
 					<h:outputText value="#{paciente.nome}" />
 				</p:column>
@@ -35,7 +36,11 @@
 				<p:column headerText="Endereco">
 					<h:outputText value="#{paciente.endereco}" />
 				</p:column>
-
+				
+				<p:column headerText="CPF">
+					<h:outputText value="#{paciente.CPF}" />
+				</p:column>
+				
 				<p:column headerText="Telefone">
 					<h:outputText value="#{paciente.telefone}" />
 				</p:column>
