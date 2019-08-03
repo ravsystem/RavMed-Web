@@ -46,17 +46,17 @@ public class PacienteController {
 		return "/pages/pacientes/pacientes.xhtml?faces-redirect=true";
 	}
 	
-	public String novoMedico() {
+	public String novoPaciente() {
 		this.paciente = new Paciente();
 		return "/pages/pacientes/addPacientes.xhtml?faces-redirect=true";
 	}
 	
-	public String addMedico() {
+	public String addPaciente() {
 		this.service.salvarPaciente(this.paciente);
 		return "/pages/pacientes/pacientes.xhtml?faces-redirect=true";
 	}
 	
-	public List<Paciente> listaPacientes(){
+	public List<Paciente> listaPaciente(){
 		this.pacientes = this.service.listaPaciente();
 		return pacientes;
 	}

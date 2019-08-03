@@ -18,7 +18,7 @@ public class PacienteRepository {
 	EntityManager factory = emf.createEntityManager();
 
 	public List<Paciente> listaPacientes() {
-		Query query = this.factory.createQuery("SELECT object(p) FROM Pacinte as p");
+		Query query = this.factory.createQuery("SELECT object(p) FROM Paciente as p");
 		return query.getResultList();
 	}
 
