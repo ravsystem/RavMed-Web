@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import br.com.consultemed.models.Paciente;
 import br.com.consultemed.models.Usuario;
 import br.com.consultemed.repository.repositories.UsuarioRepository;
 

@@ -9,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-
 import br.com.consultemed.models.Funcionario;
 import br.com.consultemed.utils.JPAUtils;
 
@@ -20,7 +19,6 @@ public class FuncionarioRepository {
 
 	public List<Funcionario> listaFuncionarios() {
 		Query query = this.factory.createQuery("SELECT object(f) FROM Funcionario as f");
-		
 		return query.getResultList();
 	}
 
@@ -43,7 +41,7 @@ public class FuncionarioRepository {
 		return contatos;
 	}
 
-	public void salvarFuncionario(Funcionario funcionario){
+	public void salvarFuncionario(Funcionario funcionario) {
 		this.factory = emf.createEntityManager();
 		try {
 			factory.getTransaction().begin();
