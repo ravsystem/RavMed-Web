@@ -33,8 +33,17 @@ public class PacienteService {
 		return resultado;
 	}
 	
+	public boolean validaEmail2(String email) {
+		boolean resultado = this.dao.validaEmail2(email);
+		return resultado;
+	}
+	
 	public boolean validaTelefone(String telefone) {
 		boolean resultado = this.dao.validaTelefone(telefone);
 		return resultado;
+	}
+	
+	public List<Paciente> selecionaNomepacientes(){
+		return this.dao.selecionaNomepacientes();
 	}
 }

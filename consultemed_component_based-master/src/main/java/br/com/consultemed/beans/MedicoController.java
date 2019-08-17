@@ -111,7 +111,7 @@ public class MedicoController{
 	}
 	
 	public void warnCrm() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe medico cadastrado com esse CRC."));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe medico cadastrado com esse CRM."));
     }
 	
 	public void warnEmail() {

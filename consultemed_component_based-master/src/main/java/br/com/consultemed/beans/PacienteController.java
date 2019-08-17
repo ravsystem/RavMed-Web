@@ -82,6 +82,9 @@ public class PacienteController {
 		}else if(this.service.validaEmail(this.paciente.getEmail()) == true) {
 			warnEmail();
 			return null;
+		}else if(this.service.validaEmail2(this.paciente.getEmail()) == true) {
+			warnEmail2();
+			return null;
 		}else if(this.service.validaTelefone(this.paciente.getTelefone()) == true) {
 			warnTelefone();
 			return null;
@@ -102,6 +105,10 @@ public class PacienteController {
 	
 	public void warnEmail() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Paciente cadastrado com esse EMAIL."));
+    }
+	
+	public void warnEmail2() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Funcionário cadastrado com esse EMAIL."));
     }
 	
 	public void warnTelefone() {

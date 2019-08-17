@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import br.com.consultemed.models.Funcionario;
 import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.utils.JPAUtils;
@@ -81,13 +82,13 @@ public class PacienteRepository {
 
 	}
 	
-	public boolean validaCpf(String cpf) {
+	public boolean validaCpf(String CPF) {
 		
 		boolean resultado = false;
 		
 		this.factory = emf.createEntityManager();
-		Query query = factory.createQuery("FROM Paciente pp where pp.cpf = :cpf ");
-		query.setParameter("cpf", cpf);
+		Query query = factory.createQuery("FROM Paciente pp where pp.CPF = :CPF ");
+		query.setParameter("CPF", CPF);
 		
 		List<Medico> listaMedicoEmail = query.getResultList();
 		
@@ -97,18 +98,38 @@ public class PacienteRepository {
 	}
 
 	public boolean validaEmail(String email) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Paciente paci where paci.email = :email ");
+		query.setParameter("email", email);
+		
+		List<Paciente> listaPacienteEmail = query.getResultList();
+		
+		if (listaPacienteEmail.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
 	
-	boolean resultado = false;
+	public boolean validaEmail2(String email) {
 	
-	this.factory = emf.createEntityManager();
-	Query query = factory.createQuery("FROM Paciente pa where pa.email = :email ");
-	query.setParameter("email", email);
-	
-	List<Medico> listaMedicoEmail = query.getResultList();
-	
-	if (listaMedicoEmail.size() > 0) resultado = true;	
-    
-	return resultado;
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Funcionario func where func.email = :email ");
+		query.setParameter("email", email);
+		
+		List<Funcionario> listaFuncEmail = query.getResultList();
+		
+		Query query2 = factory.createQuery("FROM Paciente paci where paci.email = :email ");
+		query2.setParameter("email", email);
+		
+		List<Paciente> listaPacienteEmail = query2.getResultList();
+		
+		if (listaFuncEmail.size() > 0 && listaPacienteEmail.size() > 0) resultado = true;	
+        
+		return resultado;
 	}
 
 	public boolean validaTelefone(String telefone) {
@@ -124,6 +145,16 @@ public class PacienteRepository {
 	if (listaMedicoEmail.size() > 0) resultado = true;	
     
 	return resultado;
+	}
+	
+	public List<Paciente> selecionaNomepacientes() {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("SELECT pac.nome FROM Paciente pac ");
+		
+		List<Paciente> NomePacientes = query.getResultList();
+		return NomePacientes;
+		
 	}
 
 }

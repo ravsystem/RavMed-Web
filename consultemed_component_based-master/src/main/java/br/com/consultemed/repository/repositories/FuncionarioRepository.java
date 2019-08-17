@@ -10,6 +10,8 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.consultemed.models.Funcionario;
+import br.com.consultemed.models.Medico;
+import br.com.consultemed.models.Paciente;
 import br.com.consultemed.utils.JPAUtils;
 
 public class FuncionarioRepository {
@@ -78,6 +80,56 @@ public class FuncionarioRepository {
 			factory.close();
 		}
 
+	}
+	
+	public boolean validaCpf(String cpf) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Funcionario f where f.CPF = :CPF ");
+		query.setParameter("CPF", cpf);
+		
+		List<Funcionario> listaFuncCpf = query.getResultList();
+		
+		if (listaFuncCpf.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+	
+	public boolean validaEmail(String email) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Funcionario func where func.email = :email ");
+		query.setParameter("email", email);
+		
+		List<Funcionario> listaFuncEmail = query.getResultList();
+		
+		Query query2 = factory.createQuery("FROM Paciente paci where paci.email = :email ");
+		query2.setParameter("email", email);
+		
+		List<Paciente> listaPacienteEmail = query2.getResultList();
+		
+		if (listaFuncEmail.size() > 0 && listaPacienteEmail.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+
+	public boolean validaTelefone(String telefone) {
+	
+	boolean resultado = false;
+	
+	this.factory = emf.createEntityManager();
+	Query query = factory.createQuery("FROM Funcionario fc where fc.telefone = :telefone ");
+	query.setParameter("telefone", telefone);
+	
+	List<Funcionario> listaFuncTelefone = query.getResultList();
+	
+	if (listaFuncTelefone.size() > 0) resultado = true;	
+    
+	return resultado;
 	}
 
 }

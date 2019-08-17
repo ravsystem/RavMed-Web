@@ -75,12 +75,38 @@ public class FuncionarioController {
 	}
 	
 	public String addFuncionario() {
-		this.service.salvarFuncionario(this.funcionario);
-		return "/pages/funcionarios/funcionarios.xhtml?faces-redirect=true";
+		
+		if(this.service.validaEmail(this.funcionario.getEmail()) == true){
+			warnEmail();
+			System.out.println("Entrou aqui");
+			return null;	
+		}else if(this.service.validaCpf(this.funcionario.getCPF()) == true) {
+			warnCpf();
+			return null; 
+			
+		}else if(this.service.validaTelefone(this.funcionario.getTelefone()) == true) {
+			warnTel();
+			return null;
+		}else {
+			this.service.salvarFuncionario(this.funcionario);
+			return "/pages/funcionarios/funcionarios.xhtml?faces-redirect=true";
+		}
 	}
 	
 	public List<Funcionario> listaFuncionarios(){
 		this.funcionarios = this.service.listaFuncionario();
 		return funcionarios;
 	}
+	
+	public void warnCpf() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Funcionario cadastrado com esse CPF."));
+    }
+	
+	public void warnEmail() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Funcionario cadastrado com esse Email."));
+    }
+	
+	public void warnTel() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Funcionario cadastrado com esse Telefone."));
+    }
 }

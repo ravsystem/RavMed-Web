@@ -53,4 +53,8 @@ public class MedicoService {
 		Medico medico = this.dao.selecionaMedico(codigo);
 		return medico;
 	}
+	
+	public List<Medico> selecionaNomeMedicos(){
+		return this.dao.selecionaNomeMedicos();
+	}
 }

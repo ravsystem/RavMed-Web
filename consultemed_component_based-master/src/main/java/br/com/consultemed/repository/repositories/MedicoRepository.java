@@ -107,8 +107,8 @@ public class MedicoRepository {
 		boolean resultado = false;
 		
 		this.factory = emf.createEntityManager();
-		Query query = factory.createQuery("FROM Medico n where n.email = :email ");
-		query.setParameter("email", email);
+		Query query = factory.createQuery("FROM Medico me where me.EMAIL = :email ");
+		query.setParameter("EMAIL", email);
 		
 		List<Medico> listaMedicoEmail = query.getResultList();
 		
@@ -141,6 +141,16 @@ public class MedicoRepository {
 		List<Medico> medicos = query.getResultList();
 		Medico medico = (Medico) medicos;
 		return medico;
+		
+	}
+	
+	public List<Medico> selecionaNomeMedicos() {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("SELECT med.nome FROM Medico med ");
+		
+		List<Medico> NomeMedicos = query.getResultList();
+		return NomeMedicos;
 		
 	}
 
