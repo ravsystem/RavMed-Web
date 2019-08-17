@@ -7,6 +7,9 @@
 
 	<ui:define name="content">
 
+	<script type="text/javascript" src="/resources/js/locale_pt.js"></script>
+	<h:outputScript library="js" name="locale_pt.js"/>
+
 		<p:spacer height="10" />
 
 		<h:form>
@@ -57,14 +60,21 @@
 				<h3>Data de Agendamento</h3>
 				<span class="ui-float-label"> 
                     
-                    <p:datePicker id="data_ag" value="#{consultaController.consulta.data_ag}" required="true"
-					requiredMessage="É preciso fornecer a data de agendamento." />
+                    <p:calendar id="data_ag" value="#{consultaController.consulta.data_ag}" required="true"
+					requiredMessage="É preciso fornecer a data de agendamento." pattern="yyyy-MM-dd" locale="pt">
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</p:calendar>
 					
 				</span>
 				
 				<h3>Data da Consulta</h3>
 				<span class="ui-float-label"> 
-					<h:inputText id="data_consulta" value="#{consultaController.consulta.data_consulta}" required="true" requiredMessage="É preciso fornecer a data da consulta." />
+					
+					<p:datePicker id="data_consulta" value="#{consultaController.consulta.data_consulta}" required="true"
+					requiredMessage="É preciso fornecer a data da Consulta" pattern="yyyy-MM-dd" locale="pt">
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</p:datePicker>
+					
 				</span>
 				
 			</h:panelGrid>
