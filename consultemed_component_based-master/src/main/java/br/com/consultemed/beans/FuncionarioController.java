@@ -33,7 +33,30 @@ public class FuncionarioController {
 	@Inject
 	private FuncionarioService service;
 	
-	
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public Funcionario getFuncionarioEditar() {
+		return funcionarioEditar;
+	}
+
+	public void setFuncionarioEditar(Funcionario funcionarioEditar) {
+		this.funcionarioEditar = funcionarioEditar;
+	}
+
 	public String editar() {
 		this.funcionario = this.funcionarioEditar;
 		return "/pages/funcionarios/addFuncionarios.xhtml";

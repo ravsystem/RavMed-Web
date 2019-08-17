@@ -30,4 +30,27 @@ public class MedicoService {
 	public void deletarMedico(Long id) throws Exception {
 		this.dao.deleteById(id);
 	}
+	
+	public boolean validaCrm(String crm) {
+		
+		boolean resultado = this.dao.validaCrm(crm);
+		return resultado;
+	}
+	
+	public boolean validaEmail(String email) {
+		
+		boolean resultado = this.dao.validaCrm(email);
+		return resultado;
+	}
+	
+	public boolean validaTelefone(String telefone) {
+		boolean resultado = this.dao.validaTelefone(telefone);
+		return resultado;
+	}
+	
+	public Medico selecionaMedico(Long codigo) {
+		
+		Medico medico = this.dao.selecionaMedico(codigo);
+		return medico;
+	}
 }

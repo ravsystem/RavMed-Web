@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.models.Usuario;
 import br.com.consultemed.utils.JPAUtils;
@@ -86,6 +87,21 @@ public class UsuarioRepository {
 			factory.close();
 		}
 
+	}
+	
+	public boolean validaLogin(String login) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Usuario u where u.login = :login ");
+		query.setParameter("login", login);
+		
+		List<Medico> listaMedicoEmail = query.getResultList();
+		
+		if (listaMedicoEmail.size() > 0) resultado = true;	
+        
+		return resultado;
 	}
 
 }

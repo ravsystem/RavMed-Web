@@ -28,6 +28,14 @@ public class LoginController implements Serializable {
 	@Inject
 	private UsuarioLogado usuarioLogado;
 	
+	public UsuarioLogado getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(UsuarioLogado usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
 	public String  loginUsuario() {
 		this.usuarioLogado.logar();
 		return "home?faces-redirect=true";
@@ -37,6 +45,8 @@ public class LoginController implements Serializable {
 		this.usuarioLogado.logout();
 		return "login?faces-redirect=true";
 	}
+	
+	
 	
 //	Fase 1: Restore View (Restauração da visão);
 //	Fase 2: Apply Request Values (Aplicar valores da requisição);

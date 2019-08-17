@@ -53,7 +53,7 @@ public class MedicoRepository {
 		try {
 			factory.getTransaction().begin();
 			if (medico.getId() == null) {
-				factory.persist(medico);
+					factory.persist(medico);		
 			} else {
 				factory.merge(medico);
 			}
@@ -85,6 +85,63 @@ public class MedicoRepository {
 			factory.close();
 		}
 
+	}
+	
+	public boolean validaCrm(String crm) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Medico m where m.crm = :crm ");
+		query.setParameter("crm", crm);
+		
+		List<Medico> listaMedicoCrm = query.getResultList();
+		
+		if (listaMedicoCrm.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+	
+	public boolean validaEmail(String email) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Medico n where n.email = :email ");
+		query.setParameter("email", email);
+		
+		List<Medico> listaMedicoEmail = query.getResultList();
+		
+		if (listaMedicoEmail.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+	
+	public boolean validaTelefone(String telefone) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Medico o where o.telefone = :telefone ");
+		query.setParameter("telefone", telefone);
+		
+		List<Medico> listaMedicoEmail = query.getResultList();
+		
+		if (listaMedicoEmail.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+	
+	public Medico selecionaMedico(Long id) {
+		
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Medico p where p.id = :id");
+		query.setParameter("id", id);
+		
+		List<Medico> medicos = query.getResultList();
+		Medico medico = (Medico) medicos;
+		return medico;
+		
 	}
 
 }

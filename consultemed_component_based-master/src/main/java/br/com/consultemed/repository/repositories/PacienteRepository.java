@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import br.com.consultemed.models.Medico;
 import br.com.consultemed.models.Paciente;
 import br.com.consultemed.utils.JPAUtils;
 
@@ -79,4 +80,50 @@ public class PacienteRepository {
 		}
 
 	}
+	
+	public boolean validaCpf(String cpf) {
+		
+		boolean resultado = false;
+		
+		this.factory = emf.createEntityManager();
+		Query query = factory.createQuery("FROM Paciente pp where pp.cpf = :cpf ");
+		query.setParameter("cpf", cpf);
+		
+		List<Medico> listaMedicoEmail = query.getResultList();
+		
+		if (listaMedicoEmail.size() > 0) resultado = true;	
+        
+		return resultado;
+	}
+
+	public boolean validaEmail(String email) {
+	
+	boolean resultado = false;
+	
+	this.factory = emf.createEntityManager();
+	Query query = factory.createQuery("FROM Paciente pa where pa.email = :email ");
+	query.setParameter("email", email);
+	
+	List<Medico> listaMedicoEmail = query.getResultList();
+	
+	if (listaMedicoEmail.size() > 0) resultado = true;	
+    
+	return resultado;
+	}
+
+	public boolean validaTelefone(String telefone) {
+	
+	boolean resultado = false;
+	
+	this.factory = emf.createEntityManager();
+	Query query = factory.createQuery("FROM Paciente pc where pc.telefone = :telefone ");
+	query.setParameter("telefone", telefone);
+	
+	List<Medico> listaMedicoEmail = query.getResultList();
+	
+	if (listaMedicoEmail.size() > 0) resultado = true;	
+    
+	return resultado;
+	}
+
 }

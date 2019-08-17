@@ -30,4 +30,9 @@ public class UsuarioService {
 	public void deletarUsuario(Long id) throws Exception {
 		this.dao.deleteById(id);
 	}
+	
+	public boolean validaLogin(String login) {
+		boolean resultado = this.dao.validaLogin(login);
+		return resultado;
+	}
 }

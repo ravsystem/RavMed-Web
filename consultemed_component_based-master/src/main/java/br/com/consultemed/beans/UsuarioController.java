@@ -44,6 +44,31 @@ public class UsuarioController{
 	private UsuarioService service;
 	
 	
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Usuario getUsuarioEditar() {
+		return usuarioEditar;
+	}
+
+	public void setUsuarioEditar(Usuario usuarioEditar) {
+		this.usuarioEditar = usuarioEditar;
+	}
+
 	public String editar() {
 		this.usuario = this.usuarioEditar;
 		return "/pages/usuarios/addUsuarios.xhtml";
@@ -62,8 +87,15 @@ public class UsuarioController{
 	}
 	
 	public String addUsuario() {
-		this.service.salvarUsuario(this.usuario);
-		return "/pages/usuarios/usuarios.xhtml?faces-redirect=true";
+		
+		if(this.service.validaLogin(this.usuario.getLogin()) == true) {
+			warnLogin();
+			return null;
+		}else {
+			
+			this.service.salvarUsuario(this.usuario);
+			return "/pages/usuarios/usuarios.xhtml?faces-redirect=true";
+		}
 	}
 	
 	public List<Usuario> listaUsuario(){
@@ -71,5 +103,8 @@ public class UsuarioController{
 		return usuarios;
 	}
 	
+	public void warnLogin() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Usuário cadastrado com esse Login."));
+    }
 	
 }

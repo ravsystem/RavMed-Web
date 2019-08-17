@@ -33,7 +33,30 @@ public class PacienteController {
 	@Inject
 	private PacienteService service;
 	
-	
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Paciente getPacienteEditar() {
+		return pacienteEditar;
+	}
+
+	public void setPacienteEditar(Paciente pacienteEditar) {
+		this.pacienteEditar = pacienteEditar;
+	}
+
 	public String editar() {
 		this.paciente = this.pacienteEditar;
 		return "/pages/pacientes/addPacientes.xhtml";
@@ -52,12 +75,36 @@ public class PacienteController {
 	}
 	
 	public String addPaciente() {
-		this.service.salvarPaciente(this.paciente);
-		return "/pages/pacientes/pacientes.xhtml?faces-redirect=true";
+		
+		if(this.service.validaCpf(this.paciente.getCPF()) == true) {
+			warnCpf();
+			return null;
+		}else if(this.service.validaEmail(this.paciente.getEmail()) == true) {
+			warnEmail();
+			return null;
+		}else if(this.service.validaTelefone(this.paciente.getTelefone()) == true) {
+			warnTelefone();
+			return null;
+		}else {
+			this.service.salvarPaciente(this.paciente);
+			return "/pages/pacientes/pacientes.xhtml?faces-redirect=true";
+		}
 	}
 	
 	public List<Paciente> listaPaciente(){
 		this.pacientes = this.service.listaPaciente();
 		return pacientes;
 	}
+	
+	public void warnCpf() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Paciente cadastrado com esse CPF."));
+    }
+	
+	public void warnEmail() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Paciente cadastrado com esse EMAIL."));
+    }
+	
+	public void warnTelefone() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Opa!", "Já existe Paciente cadastrado com esse TELEFONE."));
+    }
 }
