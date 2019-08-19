@@ -27,7 +27,6 @@ import lombok.Setter;
 @NamedQueries({ @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
 	@NamedQuery(name = "Usuario.loginUsuario", query = "SELECT u FROM Usuario u WHERE u.login =:login AND u.senha =:senha") })
 
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_USUARIOS")

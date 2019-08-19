@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NamedQueries({ @NamedQuery(name = "Consulta.findAll", query = "SELECT c FROM Consulta c")})
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_CONSULTA")

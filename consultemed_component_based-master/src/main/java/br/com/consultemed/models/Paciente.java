@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NamedQueries({ @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p")})
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_PACIENTE")

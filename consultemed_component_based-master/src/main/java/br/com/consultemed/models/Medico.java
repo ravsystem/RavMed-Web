@@ -25,7 +25,6 @@ import lombok.Setter;
  */
 
 @NamedQueries({ @NamedQuery(name = "Medido.findAll", query = "SELECT m FROM Medico m")})
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_MEDICOS")

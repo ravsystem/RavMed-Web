@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NamedQueries({ @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")})
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "TB_FUNCIONARIO")

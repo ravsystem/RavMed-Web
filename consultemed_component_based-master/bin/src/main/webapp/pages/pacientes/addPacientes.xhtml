@@ -21,6 +21,10 @@
 
 
 		<h:form>
+		<p:messages id="messages" showDetail="true" closable="true">
+        	<p:autoUpdate />
+    	</p:messages>
+		
 		 <p:panel id="cadastroPacientes" header="Cadastro de Paciente" style="margin-bottom:20px">
 		 
 			<h:panelGrid columns="2">
@@ -41,7 +45,14 @@
 				
 				<h3>CPF do Paciente</h3>
 				<span class="ui-float-label"> 
-					<h:inputText id="cpf" value="#{pacienteController.paciente.CPF}" required="true"/>
+					
+					<h:inputText id="cpf" value="#{pacienteController.paciente.CPF}" required="true"
+					requiredMessage="Campo CPF deve ser preenchido."   
+                    converterMessage="Apenas números no campo CPF.">  
+                                <f:convertNumber integerOnly="true"    />
+                                <f:convertNumber pattern="#######" maxFractionDigits="0"/>    
+                    </h:inputText>
+					
 				</span>
 				
 				<h3>Endereco do Paciente</h3>
@@ -51,7 +62,14 @@
 				
 				<h3>Telefone do Paciente</h3>
 				<span class="ui-float-label"> 
-					<h:inputText id="telefone" value="#{pacienteController.paciente.telefone}" required="true"/> 
+					
+					<h:inputText id="telefone" value="#{pacienteController.paciente.telefone}" required="true"
+					requiredMessage="Campo Telefone deve ser preenchido."   
+                    converterMessage="Apenas números no campo Telefone">  
+                                <f:convertNumber integerOnly="true"    />
+                                <f:convertNumber pattern="#######" maxFractionDigits="0"/>    
+                    </h:inputText>
+					
 				</span>
 			
 			</h:panelGrid>

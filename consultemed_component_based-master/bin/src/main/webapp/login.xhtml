@@ -1,23 +1,33 @@
 
-<html xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+  	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title>ConsulteMed</title>
 </h:head>
 
 <h:body>
+	
+	<div align="center" style="margin-top: 16%; margin-left: 38%; width: 25% ;border:solid 2px black; 
+	-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; box-shadow: 5px 8px 25px #888888;">
 	<h:form style="align:center">
+	
+		<h:panelGrid columns="2">
+            <h:outputLabel for="nomeUsuario" value="Usuário:" />
+            <p:inputText id="nomeUsuario" value="#{loginController.usuarioLogado.usuario.login}" required="true" label="username" />
+             
+            <h:outputLabel for="senha" value="Senha:" />
+            <p:password id="senha" value="#{loginController.usuarioLogado.usuario.senha}" required="true" label="password" />
+             
+            
+            <p:commandButton value="Enviar" update="growl" action="#{loginController.loginUsuario()}"
+                             oncomplete="handleLoginRequest(xhr, status, args)" ajax="false" />
+              
+        </h:panelGrid>		
 
-		<p:panelGrid columns="2">
-			<p:outputLabel for="nomeUsuario" value="Login Usuário:" />
-			<p:inputText id="nomeUsuario" value="#{loginController.usuarioLogado.usuario.login}" />
-
-			<p:outputLabel for="senha" value="Senha:" />
-			<p:password id="senha" value="#{loginController.usuarioLogado.usuario.senha}" />
-		</p:panelGrid>
-		
-			<p:commandButton value="Enviar" action="#{loginController.loginUsuario()}" ajax="false"/>
 	</h:form>
+	</div>
 </h:body>
 </html>
